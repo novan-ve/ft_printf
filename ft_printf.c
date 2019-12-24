@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 13:24:22 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/23 23:50:18 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 19:13:29 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,35 @@
 
 #include "ft_printf.h"
 
+void	ft_resetlst(t_print *p, int i)
+{
+	if (i == 0)
+	{
+		p->i = 0;
+		p->len = 0;
+		p->padchar = ' ';
+		p->width = 0;
+		p->tmpwidth = 0;
+	}
+	else if (i == 1)
+	{
+		p->i++;
+		p->width += p->tmpwidth;
+		p->tmpwidth = 0;
+		p->len += p->tmplen;
+	}
+	p->tmplen = 0;
+	p->error = 0;
+	p->minus = 0;
+	p->prec = -1;
+	p->just = 'l';
+}
+
 int		ft_printf(const char *format, ...)
 {
 	t_print	p;
 
-	p.i = 0;
-	p.len = 0;
-	p.tmplen = 0;
-	p.padchar = ' ';
-	p.just = 'l';
-	p.width = 0;
-	p.minus = 0;
-	p.tmpwidth = 0;
-	p.prec = -1;
-	p.error = 0;
+	ft_resetlst(&p, 0);
 	p.format = (char*)format;
 	va_start(p.args, format);
 	while (p.format[p.i] != '\0')
@@ -43,15 +58,7 @@ int		ft_printf(const char *format, ...)
 		}
 		if (p.error == 1)
 			return (-1);
-		p.i++;
-		p.width += p.tmpwidth;
-		p.tmpwidth = 0;
-		p.len += p.tmplen;
-		p.tmplen = 0;
-		p.error = 0;
-		p.minus = 0;
-		p.prec = -1;
-		p.just = 'l';
+		ft_resetlst(&p, 1);
 		if (p.len < p.width)
 			p.len = p.width;
 	}
