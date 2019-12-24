@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 14:52:02 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 00:01:11 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 17:43:52 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,6 @@ int		main(void)
 	len = printf("%0-10d%013s", 123, str);
 	printf("\t:%i\n", len);
 	ft_printf("\n");
-	 printf("%%--10-d%%013s\n");
-	 len = ft_printf("%--10-d%013s", 123, str);
-	 printf("\t:%i\n", len);
-	 len = printf("%--10-d%013s", 123, str);
-	 printf("\t:%i\n", len);
-	 ft_printf("\n");
 	/*
 	** Precision errors	%.
 	*/
@@ -519,6 +513,80 @@ int		main(void)
 	len = ft_printf("%%*i 42 == |%*i|\x0a", 3, 42);
 	printf("\t\t:%i\n", len);
 	len = printf("%%*i 42 == |%*i|\x0a", 3, 42);
+	printf("\t\t:%i\n", len);
+	/*
+	** Extra
+	*/
+	printf("%%.0%%E\n");
+	len = ft_printf("%.0%E");
+	printf("\t\t:%i\n", len);
+	len = printf("%.0%E");
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%x, -42E\n");
+	len = ft_printf("%xE", -42);
+	printf("\t\t:%i\n", len);
+	len = printf("%xE", -42);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%X, -42E\n");
+	len = ft_printf("%XE", -42);
+	printf("\t\t:%i\n", len);
+	len = printf("%XE", -42);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%x, 4294967296E\n");
+	len = ft_printf("%xE", 4294967296);
+	printf("\t\t:%i\n", len);
+	len = printf("%xE", 4294967296);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%X, 4294967296E\n");
+	len = ft_printf("%XE", 4294967296);
+	printf("\t\t:%i\n", len);
+	len = printf("%XE", 4294967296);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("@moulitest: %%5.x %%5.0x, 0, 0E\n");
+	len = ft_printf("@moulitest: %5.x %5.0xE", 0, 0);
+	printf("\t\t:%i\n", len);
+	len = printf("@moulitest: %5.x %5.0xE", 0, 0);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%.2c, NULLE\n");
+	len = ft_printf("%.2cE", NULL);
+	printf("\t\t:%i\n", len);
+	len = printf("%.2cE", NULL);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("@moulitest: %%c, 0E\n");
+	len = ft_printf("@moulitest: %cE", 0);
+	printf("\t\t:%i\n", len);
+	len = printf("@moulitest: %cE", 0);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%2c, 0E\n");
+	len = ft_printf("%2cE", 0);
+	printf("\t\t:%i\n", len);
+	len = printf("%2cE", 0);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("null %%c and text, 0E\n");
+	len = ft_printf("null %c and textE", 0);
+	printf("\t\t:%i\n", len);
+	len = printf("null %c and textE", 0);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("@moulitest: %%.d %%.0d, 42, 43E\n");
+	len = ft_printf("@moulitest: %.d %.0dE", 42, 43);
+	printf("\t\t:%i\n", len);
+	len = printf("@moulitest: %.d %.0dE", 42, 43);
+	printf("\t\t:%i\n", len);
+	ft_printf("\n");
+	printf("%%05c, 42E\n");
+	len = ft_printf("%05c", 42);
+	printf("\t\t:%i\n", len);
+	len = printf("%05c", 42);
 	printf("\t\t:%i\n", len);
 	return (0);
 }

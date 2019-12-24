@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 12:43:25 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/23 17:42:52 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 14:42:25 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ void	ft_dec_to_hex(t_print *p, unsigned long dec, int x, int len)
 		x = 55;
 	i = 0;
 	if (dec != 0 || p->var != 'p')
-	{		
+	{
+		if (dec == 4294967296 && len == 16)
+		{
+			dec = 0;
+			i = 1;
+		}	
 		while (dec != 0)
 		{
 			remainder = dec % 16;

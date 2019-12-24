@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/18 12:27:09 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/22 00:16:08 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 14:39:13 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_calcwidth(t_print *p)
 	{
 		p->padchar = ' ';
 		p->prec = 0;
-		while (ft_isalpha(p->format[p->i]) == 0 && p->format[p->i] != '\0')
+		while (ft_isalpha(p->format[p->i]) == 0 && p->format[p->i] != '\0' && p->format[p->i] != '%')
 		{
 			if (p->format[p->i] == '*')
 				p->prec = va_arg(p->args, int);

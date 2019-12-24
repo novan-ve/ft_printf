@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:52:41 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/23 17:15:34 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 15:54:27 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_prints(t_print *p)
 		i = -1;
 	else
 		p->tmplen = ft_strlen(p->strtmp);
+	if (p->padchar == '0')
+		p->padchar = ' ';
 	if (p->tmplen < p->tmpwidth && p->prec == -1 && i == 0)
 	{
 		if (p->just == 'r')

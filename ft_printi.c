@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 17:16:01 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/23 23:52:26 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 15:36:21 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_printi(t_print *p)
 	if (p->tmplen < p->tmpwidth || p->prec != -1)
 	{
 		i = 0;
-		if (p->prec == 0)
+		if (p->prec == 0 && p->itmp == 0)
 		{
 			p->tmplen = 0;
 			k = 1;

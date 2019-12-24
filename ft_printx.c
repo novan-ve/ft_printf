@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/18 17:05:03 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/23 23:16:56 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 15:36:54 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_printx(t_print *p, int x)
 		i = 0;
 		while (i < p->tmpwidth - p->tmplen && i < p->tmpwidth - p->prec && p->just == 'l')
 		{
+			p->len++;
 			ft_putchar_fd(p->padchar, 1);
 			i++;
 		}
@@ -41,6 +42,7 @@ void	ft_printx(t_print *p, int x)
 		i = 0;
 		while (i < p->tmpwidth - p->tmplen && i < p->tmpwidth - p->prec && p->just == 'r')
 		{
+			p->len++;
 			ft_putchar_fd(p->padchar, 1);
 			i++;
 		}
