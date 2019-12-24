@@ -75,7 +75,7 @@ bonus: $(BSRC) libft.h
 	ar rc $(NAME) $(BOBJ)
 
 clean:
-	/bin/rm -f *.o
+	/bin/rm -f $(OBJ) $(BOBJ)
 
 fclean: clean
 	/bin/rm -f $(NAME)
