@@ -5,8 +5,8 @@
 #                                                      +:+                     #
 #    By: novan-ve <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/11/01 17:02:03 by novan-ve       #+#    #+#                 #
-#    Updated: 2019/12/24 18:09:29 by anon          ########   odam.nl          #
+#    Created: 2019/11/01 17:02:03 by novan-ve      #+#    #+#                  #
+#    Updated: 2019/11/15 15:13:45 by novan-ve      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,14 +64,14 @@ OBJ = $(SRC:%.c=%.o)
 BOBJ = $(BSRC:%.c=%.o)
 
 all: $(NAME)
-FLAGS: -Wall -Werror -Wextra libft.h
+FLAGS: -Wall -Werror -Wextra
 
-$(NAME): $(SRC)
-	clang $(FLAGS) -c $(SRC)
+$(NAME): $(SRC) libft.h
+	gcc $(FLAGS) -c $(SRC)
 	ar rc $(NAME) $(OBJ)
 
-bonus: $(BSRC)
-	clang $(FLAGS) -c $(BSRC)
+bonus: $(BSRC) libft.h
+	gcc $(FLAGS) -c $(BSRC)
 	ar rc $(NAME) $(BOBJ)
 
 clean:
