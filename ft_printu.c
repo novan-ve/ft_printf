@@ -6,11 +6,41 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 17:30:51 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 20:54:15 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 21:25:41 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_uputnbr_fd(unsigned int n, int fd)
+{
+	if (n < 0)
+		ft_putnbr_fd(4294967295 - -n, fd);
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + '0', fd);
+}
+
+int		ft_nbrlenu(unsigned int nb, int x)
+{
+	int				i;
+
+	i = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0 && x == 0)
+		i = 1;
+	while (nb > 0 || nb < 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
+}
 
 void	ft_printu2(t_print *p)
 {

@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 13:24:22 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 19:13:29 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 21:21:30 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,63 @@
 */
 
 #include "ft_printf.h"
+
+void	ft_printc(t_print *p)
+{
+	int		i;
+
+	i = 0;
+	p->tmplen++;
+	if (p->padchar == '0')
+		p->padchar = ' ';
+	if (p->just == 'r')
+		ft_putchar_fd((unsigned int)va_arg(p->args, char*), 1);
+	while (i < (p->tmpwidth - 1))
+	{
+		ft_putchar_fd(p->padchar, 1);
+		i++;
+	}
+	if (p->just == 'l')
+		ft_putchar_fd((unsigned int)va_arg(p->args, char*), 1);
+}
+
+void	ft_format2(t_print *p)
+{
+	p->i++;
+	if (p->format[p->i] == '-' || p->format[p->i] == '.')
+		ft_calcwidth(p);
+	else if (p->format[p->i] >= '0' && p->format[p->i] <= '9')
+		ft_calcwidth(p);
+	else if (p->format[p->i] == '*')
+		ft_calcwidth(p);
+}
+
+void	ft_format(t_print *p)
+{
+	ft_format2(p);
+	if (p->format[p->i] == 's')
+		ft_prints(p);
+	else if (p->format[p->i] == 'i' || p->format[p->i] == 'd')
+		ft_printi(p);
+	else if (p->format[p->i] == 'c')
+		ft_printc(p);
+	else if (p->format[p->i] == 'p')
+		ft_printp(p);
+	else if (p->format[p->i] == 'u')
+		ft_printu(p);
+	else if (p->format[p->i] == '%')
+	{
+		p->tmpwidth = 1;
+		ft_putchar_fd('%', 1);
+		p->len++;
+	}
+	else if (p->format[p->i] == 'x')
+		ft_printx(p, 0);
+	else if (p->format[p->i] == 'X')
+		ft_printx(p, 1);
+	else
+		p->error = 1;
+}
 
 void	ft_resetlst(t_print *p, int i)
 {

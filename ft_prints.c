@@ -6,11 +6,24 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 16:52:41 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 20:51:41 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 21:23:12 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_putprec_fd(char *s, int fd, int prec)
+{
+	int		i;
+
+	i = 0;
+	if (s)
+		while (s[i] != '\0' && i < prec)
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
+}
 
 void	ft_prints4(t_print *p)
 {

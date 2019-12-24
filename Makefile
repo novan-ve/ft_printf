@@ -16,18 +16,10 @@ FLAGS = -Wall -Werror -Wextra libft/libft.h -c
 
 SRCS = ft_printf.c \
 		ft_printi.c \
-		ft_printp.c \
+		ft_printxp.c \
 		ft_prints.c \
 		ft_printu.c \
-		ft_printx.c \
-		ft_printc.c \
-		ft_putprec_fd.c \
-		ft_uputnbr_fd.c \
-		ft_calcwidth.c \
-		ft_dec_to_hex.c \
-		ft_format.c \
-		ft_nbrleni.c \
-		ft_nbrlenu.c
+		ft_calc.c \
 
 OBJS = $(SRCS:%.c=%.o)
 

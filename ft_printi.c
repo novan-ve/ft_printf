@@ -6,11 +6,28 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 17:16:01 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 20:38:21 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 21:26:27 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_nbrleni(long nb, int x)
+{
+	int				i;
+
+	i = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0 && x == 0)
+		i = 1;
+	while (nb > 0 || nb < 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
+}
 
 void	ft_printi3(t_print *p, int j, int k)
 {
