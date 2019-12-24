@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 12:43:25 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 14:42:25 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 20:19:36 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,39 @@ void	ft_strrev(t_print *p, int len)
 	p->tmplen = ft_strlen(p->hex);
 }
 
-void	ft_dec_to_hex(t_print *p, unsigned long dec, int x, int len)
+void	ft_dec_to_hex2(t_print *p, unsigned long dec, int x, int len)
 {
 	unsigned long	remainder;
 	int				i;
 
+	i = 0;
+	if (dec == 4294967296 && len == 16)
+	{
+		dec = 0;
+		i = 1;
+	}	
+	while (dec != 0)
+	{
+		remainder = dec % 16;
+		if (remainder < 10)
+			p->hex[i] = 48 + remainder;
+		else
+			p->hex[i] = x + remainder;
+		dec /= 16;
+		i++;
+	}
+	p->hex[i] = '\0';
+	ft_strrev(p, len);
+}
+
+void	ft_dec_to_hex(t_print *p, unsigned long dec, int x, int len)
+{
 	if (x == 0)
 		x = 87;
 	else if (x == 1)
 		x = 55;
-	i = 0;
 	if (dec != 0 || p->var != 'p')
-	{
-		if (dec == 4294967296 && len == 16)
-		{
-			dec = 0;
-			i = 1;
-		}	
-		while (dec != 0)
-		{
-			remainder = dec % 16;
-			if (remainder < 10)
-				p->hex[i] = 48 + remainder;
-			else
-				p->hex[i] = x + remainder;
-			dec /= 16;
-			i++;
-		}
-		p->hex[i] = '\0';
-		ft_strrev(p, len);
-	}
+		ft_dec_to_hex2(p, dec, x, len);
 	else
 	{
 		p->hex[0] = '\0';

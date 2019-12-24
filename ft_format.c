@@ -6,13 +6,13 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 15:45:07 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/23 17:35:46 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/24 20:23:36 by anon          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_format(t_print *p)
+void	ft_format2(t_print *p)
 {
 	p->i++;
 	if (p->format[p->i] == '-' || p->format[p->i] == '.')
@@ -21,6 +21,11 @@ void	ft_format(t_print *p)
 		ft_calcwidth(p);
 	else if (p->format[p->i] == '*')
 		ft_calcwidth(p);
+}
+
+void	ft_format(t_print *p)
+{
+	ft_format2(p);
 	if (p->format[p->i] == 's')
 		ft_prints(p);
 	else if (p->format[p->i] == 'i' || p->format[p->i] == 'd')
