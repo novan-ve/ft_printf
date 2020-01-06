@@ -6,7 +6,7 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 17:16:01 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 21:26:27 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/27 14:19:43 by novan-ve      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,25 @@ void	ft_printi(t_print *p)
 	}
 	else
 		ft_putnbr_fd(p->itmp, 1);
+}
+
+void	ft_printper(t_print *p)
+{
+	int		i;
+
+	i = 0;
+	p->len++;
+	while (i < p->tmpwidth - 1 && p->just == 'l')
+	{
+		ft_putchar_fd(p->padchar, 1);
+		i++;
+		p->len++;
+	}
+	ft_putchar_fd('%', 1);
+	while (i < p->tmpwidth - 1 && p->just == 'r')
+	{
+		ft_putchar_fd(p->padchar, 1);
+		i++;
+		p->len++;
+	}
 }

@@ -6,11 +6,24 @@
 /*   By: novan-ve <novan-ve@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/17 17:30:51 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 21:25:41 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/27 16:06:18 by novan-ve      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_putprec_fd(char *s, int fd, int prec)
+{
+	int		i;
+
+	i = 0;
+	if (s)
+		while (s[i] != '\0' && i < prec)
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
+}
 
 void	ft_uputnbr_fd(unsigned int n, int fd)
 {
@@ -47,11 +60,12 @@ void	ft_printu2(t_print *p)
 	int		i;
 
 	i = 0;
-	while (i < p->tmpwidth - p->tmplen && i < p->tmpwidth - p->prec && p->just == 'l')
-	{
-		ft_putchar_fd(p->padchar, 1);
-		i++;
-	}
+	if (p->just == 'l')
+		while (i < p->tmpwidth - p->tmplen && i < p->tmpwidth - p->prec)
+		{
+			ft_putchar_fd(p->padchar, 1);
+			i++;
+		}
 	i = 0;
 	while (i < (p->prec - p->tmplen))
 	{
@@ -62,11 +76,12 @@ void	ft_printu2(t_print *p)
 	if (p->prec != 0)
 		ft_uputnbr_fd(p->itmp, 1);
 	i = 0;
-	while (i < p->tmpwidth - p->tmplen && i < p->tmpwidth - p->prec && p->just == 'r')
-	{
-		ft_putchar_fd(p->padchar, 1);
-		i++;
-	}
+	if (p->just == 'r')
+		while (i < p->tmpwidth - p->tmplen && i < p->tmpwidth - p->prec)
+		{
+			ft_putchar_fd(p->padchar, 1);
+			i++;
+		}
 }
 
 void	ft_printu(t_print *p)

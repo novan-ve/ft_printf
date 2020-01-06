@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/06 10:56:27 by novan-ve      #+#    #+#                 */
-/*   Updated: 2019/11/20 11:19:03 by novan-ve      ########   odam.nl         */
+/*   Updated: 2019/11/14 19:26:36 by novan-ve      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 		front++;
 	back = ft_strlen(s1);
 	if (front >= back)
-	{
-		str = malloc(1);
-		*str = '\0';
-		return (str);
-	}
+		return ("");
 	while (ft_strchr(set, s1[back - 1]))
 		back--;
-	str = (char*)malloc(sizeof(char) * (back - front) + 1);
+	str = malloc(sizeof(char) * (back - front) + 1);
 	if (str == 0)
 		return (str);
 	ft_strlcpy(str, s1 + front, (back - front) + 1);

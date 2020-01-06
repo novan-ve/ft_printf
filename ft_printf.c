@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/16 13:24:22 by novan-ve       #+#    #+#                */
-/*   Updated: 2019/12/24 21:21:30 by anon          ########   odam.nl         */
+/*   Updated: 2019/12/27 14:54:56 by novan-ve      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_printc(t_print *p)
 
 	i = 0;
 	p->tmplen++;
-	if (p->padchar == '0')
-		p->padchar = ' ';
 	if (p->just == 'r')
 		ft_putchar_fd((unsigned int)va_arg(p->args, char*), 1);
 	while (i < (p->tmpwidth - 1))
@@ -60,11 +58,7 @@ void	ft_format(t_print *p)
 	else if (p->format[p->i] == 'u')
 		ft_printu(p);
 	else if (p->format[p->i] == '%')
-	{
-		p->tmpwidth = 1;
-		ft_putchar_fd('%', 1);
-		p->len++;
-	}
+		ft_printper(p);
 	else if (p->format[p->i] == 'x')
 		ft_printx(p, 0);
 	else if (p->format[p->i] == 'X')

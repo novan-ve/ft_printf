@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/08 13:36:37 by novan-ve      #+#    #+#                 */
-/*   Updated: 2019/11/20 11:21:11 by novan-ve      ########   odam.nl         */
+/*   Updated: 2019/11/15 15:36:32 by novan-ve      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ char		*ft_itoa(int n)
 	int				index;
 	int				check;
 
-	if (n == 0)
-		return (ft_strdup("0"));
-	str = (char*)malloc(ft_intlen(n) + 1);
+	str = (n == 0) ? malloc(2) : malloc(ft_intlen(n) + 1);
 	if (str == 0)
 		return (0);
+	if (n == 0)
+		return ("0");
 	index = ft_intlen(n);
 	check = (n < 0) ? 1 : 0;
 	if (n < 0)

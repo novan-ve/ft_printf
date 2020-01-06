@@ -6,7 +6,7 @@
 /*   By: novan-ve <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/10 16:34:36 by novan-ve      #+#    #+#                 */
-/*   Updated: 2019/11/20 11:38:00 by novan-ve      ########   odam.nl         */
+/*   Updated: 2019/11/15 15:27:53 by novan-ve      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_substr2(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (s == 0 || len <= 0)
 		return (0);
-	ptr = (char*)malloc(sizeof(char) * (len + 1));
+	ptr = malloc(sizeof(char) * (len + 1));
 	if (ptr == 0)
 		return (0);
 	str = ptr;
@@ -56,17 +56,14 @@ static int	ft_count(char const *s, char c)
 	return (count);
 }
 
-static void	*ft_free(char **s, int i)
+static char	**ft_free(char **s, int i)
 {
 	while (i >= 0)
 	{
-		if (s[i])
-			free(s[i]);
+		free(s[i]);
 		i--;
 	}
-	if (s)
-		free(s);
-	return (NULL);
+	return (s);
 }
 
 static char	**ft_splitloop(const char *s, char **result, char c)
@@ -100,14 +97,9 @@ char		**ft_split(char const *s, char c)
 {
 	char	**result;
 
-	if (s == 0)
-		return (0);
-	result = (char**)malloc(sizeof(char *) * (ft_count(s, c) + 1));
+	result = (s == 0) ? 0 : malloc(sizeof(char *) * (ft_count(s, c) + 1));
 	if (result == 0)
 		return (0);
-	if (ft_splitloop(s, result, c) == NULL)
-		return (NULL);
-	else
-		result = ft_splitloop(s, result, c);
+	result = ft_splitloop(s, result, c);
 	return (result);
 }
